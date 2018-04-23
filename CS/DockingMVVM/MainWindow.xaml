@@ -1,0 +1,50 @@
+﻿<Window x:Class="DXDockingMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+        xmlns:local="clr-namespace:DXDockingMVVM"
+        Title="MainWindow" Height="350" Width="525"
+        >
+    
+    <Window.DataContext>
+        <local:DockLayoutManagerViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:DocumentViewModel}">
+            <Border Background="#FFBEC8D9">
+                <ContentPresenter Content="{Binding Content}" />
+            </Border>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:PanelViewModel}">
+            <Border Background="#FFDADFE4">
+                <ContentPresenter Content="{Binding Content}" />
+            </Border>
+        </DataTemplate>
+        <Style TargetType="dxd:LayoutPanel">
+            <Setter Property="Caption" Value="{Binding DisplayName}" />
+        </Style>
+        <Style TargetType="dxd:DocumentPanel">
+            <Setter Property="Caption" Value="{Binding DisplayName}" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Name="AddPanel" Content="Add Panel" Command="{Binding AddPanelCommand}" />
+            <Button Name="AddDocument"  Content="Add Document" Command="{Binding AddDocumentCommand}"/>
+        </StackPanel>
+        <dxb:BarManager Grid.Row="1">
+            <dxd:DockLayoutManager ItemsSource="{Binding Workspaces}">
+                <dxd:LayoutGroup>
+                    <dxd:LayoutGroup x:Name="PanelHost" DestroyOnClosingChildren="False"/>
+                    <dxd:DocumentGroup x:Name="DocumentHost" DestroyOnClosingChildren="False" />
+                </dxd:LayoutGroup>
+            </dxd:DockLayoutManager>
+        </dxb:BarManager>
+    </Grid>
+</Window>
