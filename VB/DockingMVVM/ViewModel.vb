@@ -6,7 +6,7 @@ Imports System.Windows
 Imports DevExpress.Xpf.Docking
 Imports System.Collections.ObjectModel
 Imports System.Windows.Input
-Imports DevExpress.Xpf.Mvvm
+Imports DevExpress.Mvvm
 
 Namespace DXDockingMVVM
     Public Class DockLayoutManagerViewModel

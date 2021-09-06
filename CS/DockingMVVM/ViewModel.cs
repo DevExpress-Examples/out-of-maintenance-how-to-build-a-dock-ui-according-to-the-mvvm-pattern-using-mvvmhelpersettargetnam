@@ -6,7 +6,7 @@ using System.Windows;
 using DevExpress.Xpf.Docking;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using DevExpress.Xpf.Mvvm;
+using DevExpress.Mvvm;
 
 namespace DXDockingMVVM {
     public class DockLayoutManagerViewModel : DependencyObject {
